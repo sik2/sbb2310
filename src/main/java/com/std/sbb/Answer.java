@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 public class Answer {
-    @Id
+    @Id // PRIMARY KEY
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
@@ -19,4 +19,7 @@ public class Answer {
     private String content;
 
     private LocalDateTime createDate;
+
+    @ManyToOne // 아래 처럼 다른 엔티티 클래스 리모콘을 저장할 때는 꼭 관계를 적어준다.
+    private Question question;
 }
