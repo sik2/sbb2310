@@ -29,11 +29,4 @@ public class QuestionController {
 
         return "question_detail";
     }
-
-    //TODO: 테스트용 AnswerController 에서 처리 예정
-    @PostMapping("/createTemp")
-    @ResponseBody
-    public String temp() {
-        return "전송완료";
-    }
 }
