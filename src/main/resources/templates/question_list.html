@@ -9,15 +9,10 @@
     </tr>
     </thead>
     <tbody>
-    <tr>
-        <td th:text="${questionList[1].id}"></td>
-        <td th:text="${questionList[1].subject}"></td>
-        <td th:text="${questionList[1].createDate}"></td>
-    </tr>
-    <tr>
-        <td>[[${questionList[0].id}]]</td>
-        <td>[[${questionList[0].subject}]]</td>
-        <td>[[${questionList[0].createDate}]]</td>
+    <tr th:each="question : ${questionList}">
+        <td th:text="${question.id}"></td>
+        <td th:text="${question.subject}"></td>
+        <td th:text="${question.createDate}"></td>
     </tr>
     </tbody>
 </table>
