@@ -2,9 +2,11 @@ package com.std.sbb.Answer;
 
 import com.std.sbb.Question.Question;
 import com.std.sbb.Question.QuestionService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
@@ -15,11 +17,18 @@ public class AnswerController {
     private final AnswerService answerService;
 
     @PostMapping("/create/{id}")
-    public String createAnswer (Model model, @PathVariable("id") Integer id, @RequestParam String content) {
+    public String createAnswer(Model model, @PathVariable("id") Integer id,
+                               @Valid AnswerForm answerForm, BindingResult bindingResult) {
+
         //답변 부모 질문객체를 받아온다.
         Question q = this.questionService.getQuestion(id);
 
-        Answer answer = this.answerService.create(q, content);
+        if (bindingResult.hasErrors()) {
+            model.addAttribute("question", q);
+            return "question_detail";
+        }
+
+        Answer answer = this.answerService.create(q, answerForm.getContent());
 
         return "redirect:/question/detail/%d".formatted(id);
     }
