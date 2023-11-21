@@ -33,7 +33,8 @@ public class QuestionController {
     }
 
     @GetMapping("/create")
-    public String create(QuestionForm questionForm) {
+    public String create(Model model) {
+        model.addAttribute("questionForm", new QuestionForm());
         return "question_form";
     }
 
