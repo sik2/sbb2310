@@ -29,4 +29,9 @@ public class QuestionController {
 
         return "question_detail";
     }
+
+    @GetMapping("/create")
+    public String create() {
+        return "question_form";
+    }
 }
