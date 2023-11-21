@@ -1,8 +1,10 @@
 package com.std.sbb.Question;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -36,8 +38,12 @@ public class QuestionController {
     }
 
     @PostMapping("/create")
-    public String questionCreate(String subject, String content) {
-        Question q = this.questionService.create(subject, content);
+    public String questionCreate(@Valid QuestionForm questionForm, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return "question_form";
+        }
+
+        Question q = this.questionService.create( questionForm.getSubject(), questionForm.getContent());
 
         return "redirect:/question/list";
     }
