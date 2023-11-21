@@ -3,10 +3,13 @@ package com.std.sbb.Question;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
+import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.NotEmpty;
 
 @Getter
 @Setter
+@ToString
 public class QuestionForm {
     @NotEmpty(message="제목은 필수항목입니다.")
     @Size(max=200)
