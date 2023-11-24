@@ -4,6 +4,7 @@ import com.std.sbb.Answer.Answer;
 import com.std.sbb.Answer.AnswerRepository;
 import com.std.sbb.Question.Question;
 import com.std.sbb.Question.QuestionRepository;
+import com.std.sbb.Question.QuestionService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.IntStream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -26,6 +28,8 @@ class SbbApplicationTests {
 
 	@Autowired
 	private AnswerRepository answerRepository;
+
+	@Autowired QuestionService questionService;
 
 	@Test
 	@DisplayName("단건 조회")
@@ -90,5 +94,22 @@ class SbbApplicationTests {
 
 		assertEquals(1, answerList.size());
 		assertEquals("네 자동으로 생성됩니다.", answerList.get(0).getContent());
+	}
+
+	@Test
+	@DisplayName("데이터 밀어넣기")
+	void testInsertJpa() {
+		for (int i = 1; i <= 300; i++) {
+			String subject = String.format("테스트 데이터입니다:[%03d]", i);
+			String content = "내용무";
+			this.questionService.create(subject, content);
+		}
+	}
+
+	@Test
+	@DisplayName("스트림 버전 데이터 밀어넣기")
+	void t012() {
+		IntStream.rangeClosed(3, 300)
+				.forEach(no -> questionService.create("테스트 제목입니다. %d".formatted(no), "테스트내용입니다. %d".formatted(no)));
 	}
 }
