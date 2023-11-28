@@ -1,4 +1,4 @@
-package com.std.sbb.Question;
+package com.std.sbb.question;
 
 import com.std.sbb.DataNotException;
 import lombok.RequiredArgsConstructor;

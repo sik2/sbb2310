@@ -1,7 +1,7 @@
-package com.std.sbb.Answer;
+package com.std.sbb.answer;
 
-import com.std.sbb.Question.Question;
-import com.std.sbb.Question.QuestionService;
+import com.std.sbb.question.Question;
+import com.std.sbb.question.QuestionService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;

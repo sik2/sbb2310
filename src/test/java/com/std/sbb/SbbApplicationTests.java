@@ -1,10 +1,10 @@
 package com.std.sbb;
 
-import com.std.sbb.Answer.Answer;
-import com.std.sbb.Answer.AnswerRepository;
-import com.std.sbb.Question.Question;
-import com.std.sbb.Question.QuestionRepository;
-import com.std.sbb.Question.QuestionService;
+import com.std.sbb.answer.Answer;
+import com.std.sbb.answer.AnswerRepository;
+import com.std.sbb.question.Question;
+import com.std.sbb.question.QuestionRepository;
+import com.std.sbb.question.QuestionService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

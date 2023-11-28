@@ -1,10 +1,9 @@
-package com.std.sbb.Question;
+package com.std.sbb.question;
 
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
-import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.NotEmpty;
 
 @Getter

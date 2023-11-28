@@ -1,6 +1,6 @@
-package com.std.sbb.Question;
+package com.std.sbb.question;
 
-import com.std.sbb.Answer.AnswerForm;
+import com.std.sbb.answer.AnswerForm;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;

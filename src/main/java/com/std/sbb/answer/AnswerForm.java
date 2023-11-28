@@ -1,4 +1,4 @@
-package com.std.sbb.Answer;
+package com.std.sbb.answer;
 
 import jakarta.validation.constraints.NotEmpty;
 import lombok.Getter;
