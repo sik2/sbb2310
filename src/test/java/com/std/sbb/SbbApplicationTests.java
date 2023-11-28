@@ -116,4 +116,13 @@ class SbbApplicationTests {
 		IntStream.rangeClosed(3, 300)
 				.forEach(no -> questionService.create("테스트 제목입니다. %d".formatted(no), "테스트내용입니다. %d".formatted(no)));
 	}
+
+//	@BeforeEach
+	@Test
+	@DisplayName("회원데이터 넣기")
+	void beforeEachUserData() {
+		userService.create("user1", "user1@test.com", "1234");
+		userService.create("user2", "user2@test.com", "1234");
+	}
+
 }
