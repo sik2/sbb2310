@@ -5,12 +5,12 @@ import com.std.sbb.answer.AnswerRepository;
 import com.std.sbb.question.Question;
 import com.std.sbb.question.QuestionRepository;
 import com.std.sbb.question.QuestionService;
+import com.std.sbb.user.UserService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
-
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -29,7 +29,11 @@ class SbbApplicationTests {
 	@Autowired
 	private AnswerRepository answerRepository;
 
-	@Autowired QuestionService questionService;
+	@Autowired
+	private QuestionService questionService;
+
+	@Autowired
+	private UserService userService;
 
 	@Test
 	@DisplayName("단건 조회")
