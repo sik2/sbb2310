@@ -37,8 +37,19 @@
                     required
                     maxlength="2000"
                     placeholder="내용을 2,000자 이하로 입력하세요"
-                    th:field="*{content}" rows="10"
+                    sec:authorize="isAnonymous()" disabled
+                    th:field="*{content}"
                     class="form-control"
+                    rows="10"
+            ></textarea>
+            <textarea
+                    required
+                    maxlength="2000"
+                    placeholder="내용을 2,000자 이하로 입력하세요"
+                    sec:authorize="isAuthenticated()"
+                    th:field="*{content}"
+                    class="form-control"
+                    rows="10"
             ></textarea>
             <input type="submit" value="답변등록" class="btn btn-primary my-2">
         </form>
