@@ -19,8 +19,18 @@ public class SecurityConfig {
                 .authorizeHttpRequests((authorizeHttpRequests) -> authorizeHttpRequests
                         .requestMatchers(new AntPathRequestMatcher("/**")).permitAll())
                         .formLogin((formLogin) -> formLogin
+                                // GET
+                                // 시큐리티에게 사용자 만든 로그인페이지 URL 알려준다
+                                // 없으면 기본 URL /login
                                 .loginPage("/user/login")
+                                // POST
+                                // 시큐리티에게 로그인 폼 요청 URL을 알려준다
+                                .loginProcessingUrl("/user/login")
                                 .defaultSuccessUrl("/"))
+                        .logout((logout) -> logout
+                                .logoutRequestMatcher(new AntPathRequestMatcher("/user/logout"))
+                                .logoutSuccessUrl("/")
+                                .invalidateHttpSession(true))
         ;
         return http.build();
     }
