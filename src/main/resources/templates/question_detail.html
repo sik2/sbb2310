@@ -18,12 +18,11 @@
                     </div>
                 </div>
                 <div class="my-3">
-                    <a onclick="return confirm('정말로 추천하시겠습니까?');"
-                        th:href="@{|/question/vote/${question.id}|}"
+                    <a id = "question_recommend"
                         class="recommend btn btn-sm btn-outline-secondary"
                       >
                         추천
-                        <span class="badge rounded-pill bg-success" th:text="${#lists.size(question.voter)}"></span>
+                        <span id="recommend_question_count" class="badge rounded-pill bg-success" th:text="${#lists.size(question.voter)}"></span>
                     </a>
                     <a th:href="@{|/question/modify/${question.id}|}" class="btn btn-sm btn-outline-secondary"
                        sec:authorize="isAuthenticated()"
@@ -60,12 +59,12 @@
                     </div>
                 </div>
                 <div class="my-3">
-                    <a onclick="return confirm('정말로 추천하시겠습니까?');"
-                        th:href="@{|/answer/vote/${answer.id}|}"
-                       class="recommend btn btn-sm btn-outline-secondary"
+                    <a
+                       class="answer_recommend recommend btn btn-sm btn-outline-secondary"
                       >
+                        <input name="answer_id" type= "hidden" th:value="${answer.id}">
                         추천
-                        <span class="badge rounded-pill bg-success" th:text="${#lists.size(answer.voter)}"></span>
+                        <span class="recommend_answer_count badge rounded-pill bg-success" th:text="${#lists.size(answer.voter)}"></span>
                     </a>
                     <a th:href="@{|/answer/modify/${answer.id}|}" class="btn btn-sm btn-outline-secondary"
                        sec:authorize="isAuthenticated()"
@@ -105,3 +104,42 @@
         </form>
     </div>
 </html>
+<script th:inline="javascript">
+    var question_id = [[${question.id}]]
+
+    $('#question_recommend').on("click", function () {
+        if (confirm("정말로 추천하시겠습니까?")) {
+            $.ajax({
+                    type: "GET",
+                    url: `/question/vote/${question_id}`,
+                    success: function (res) {
+                        $("#recommend_question_count").text(res)
+                    },
+                    error: function (xhr) {
+                        console.log(xhr)
+                    }
+           })
+        }
+    })
+
+    $('.answer_recommend').on("click", function () {
+        var _this = $(this)
+        var answer_id = _this.find('input[name=answer_id]').val();
+
+        if (confirm("정말로 추천하시겠습니까?")) {
+            $.ajax({
+                    type: "GET",
+                    url: `/answer/vote/${answer_id}`,
+                    success: function (res) {
+                        _this.find(".recommend_answer_count").text(res)
+                    },
+                    error: function (xhr) {
+                        console.log(xhr)
+                    }
+           })
+        }
+    })
+
+
+</script>
+
