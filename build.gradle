@@ -29,6 +29,8 @@ dependencies {
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	// h2
 	runtimeOnly 'com.h2database:h2'
+	//pg
+	runtimeOnly 'org.postgresql:postgresql'
 	// jpa
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.mariadb.jdbc:mariadb-java-client:3.3.0'
@@ -48,4 +50,8 @@ tasks.named('bootBuildImage') {
 
 tasks.named('test') {
 	useJUnitPlatform()
+}
+
+jar {
+	enabled = false
 }
